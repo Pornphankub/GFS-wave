@@ -40,7 +40,7 @@ PROGRESS_FILE = "progress.json"
 #    ต้องสร้าง dataset เปล่าบน Kaggle ไว้ก่อน แล้วใส่ slug ตรงนี้
 #    รูปแบบ: "username/dataset-slug"
 # ----------------------------------------------------------------------
-KAGGLE_DATASET_SLUG = "your-username/gfs-wave-thailand"
+KAGGLE_DATASET_SLUG = "pornphanphuatana/gfs-wave"
 
 # ----------------------------------------------------------------------
 # 6) แหล่งข้อมูล: ใช้ AWS Open Data (noaa-gfs-bdp-pds) แหล่งเดียวตลอดช่วงที่ต้องการ
