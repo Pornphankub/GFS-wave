@@ -44,11 +44,17 @@ jobs:
           read -r YEAR MONTH <<< "${{ steps.next.outputs.result }}"
           python scripts/download_gfswave.py --year "$YEAR" --month "$MONTH"
 
-      - name: อัปโหลดขึ้น Kaggle
+      - name: ตั้งค่า Kaggle API Token (รูปแบบใหม่ KGAT_...)
         if: steps.next.outputs.result != 'FINISHED'
         env:
-          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
-          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+          KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_API_TOKEN }}
+        run: |
+          mkdir -p ~/.kaggle
+          echo "$KAGGLE_API_TOKEN" > ~/.kaggle/access_token
+          chmod 600 ~/.kaggle/access_token
+
+      - name: อัปโหลดขึ้น Kaggle
+        if: steps.next.outputs.result != 'FINISHED'
         run: python scripts/upload_kaggle.py
 
       - name: ลบไฟล์ข้อมูลออกจาก runner (ไม่ต้อง commit ไฟล์ข้อมูลเข้า repo)
